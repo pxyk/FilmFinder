@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head />
-      <body>
+      <body className="{inter.className} container mx-auto max-w-6xl">
         <Main />
         <NextScript />
       </body>
