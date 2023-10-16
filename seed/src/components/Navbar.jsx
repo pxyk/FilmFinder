@@ -7,7 +7,7 @@ const Navbar = () => {
         <a href="/">FilmFinder</a>
       </h1>
       <div className="flex items-center space-x-2">
-        <span className="text-red-600 cursor-pointer">Sign Up</span>
+        <span className="text-red-600 cursor-pointer">Sign In</span>
         <div className="cursor-pointer bg-red-800 border-0 py-1 px-3 focus:outline-none hover:bg-red-500 rounded text-base md:mt-0 transition duration-300 ease-in-out">
           Register
         </div>
