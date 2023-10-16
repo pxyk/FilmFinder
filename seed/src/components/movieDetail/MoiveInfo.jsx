@@ -31,18 +31,18 @@ const MovieInfo = ({
       <div className="flex flex-col flex-grow">
         <h2 className="text-4xl font-bold mt-8 mb-4">{title}</h2>
         <div className="flex flex-col md:flex-row md:items-center mb-4">
-          <p className="text-gray-400 mb-2 md:mr-4">
+          <p className="text-gray-400 hover:text-gray-200 mb-2 md:mr-4">
             {hours}h {minutes}m
           </p>
-          <p className="text-gray-400 mb-2 md:mr-4">
+          <p className="text-gray-400 hover:text-gray-200 mb-2 md:mr-4">
             {genres.map((genre) => genre.name).join(", ")}
           </p>
-          <p className="text-gray-400 mb-2">{formattedReleaseDate}</p>
+          <p className="text-gray-400 hover:text-gray-200 mb-2">{formattedReleaseDate}</p>
         </div>
         <div className="flex items-center justify-center w-16 h-16 bg-red-500 rounded-full mb-4">
           <p className="text-xl font-bold">{votePercentage}%</p>
         </div>
-        <p className="text-gray-400">{overview}</p>
+        <p className="text-gray-400 hover:text-gray-100">{overview}</p>
       </div>
     </div>
   );
