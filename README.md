@@ -22,4 +22,4 @@ FilmFinder is a dedicated web platform for cinema enthusiasts.
 npm i
 npm run dev
 ```
-![screencapture-film-finder-zeta-vercel-app-2023-10-16-12_23_08](https://github.com/pxyk/FilmFinder/assets/101509856/2ccbbbdf-59b9-4dd7-85e7-d6b6e708d364)
+![screencapture-film-finder-zeta-vercel-app-2023-10-16-22_02_39 (1)](https://github.com/pxyk/FilmFinder/assets/101509856/e459529d-cd27-4bac-af74-4a24dd6fdbb4)
