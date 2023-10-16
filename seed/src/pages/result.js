@@ -1,9 +1,13 @@
 import React from "react";
 import Head from "next/head";
-import PopularMovies from "@/components/mainPage/PopularMovies";
-import SearchBar from "@/components/mainPage/SearchBar";
+import { useSelector } from "react-redux";
+import MovieResults from "@/components/searchResults/MovieResults";
+import PersonResults from "@/components/searchResults/PersonResults";
+import ResultSearchBar from "@/components/searchResults/ResultSearchBar";
 
-const index = () => {
+const Result = () => {
+  const query = useSelector((state) => state.search.query);
+
   return (
     <div>
       <Head>
@@ -15,10 +19,13 @@ const index = () => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <h1>My Movie App</h1>
-      <SearchBar />
-      <PopularMovies />
+      <h1>Search Results</h1>
+      <ResultSearchBar />
+      <p>Query: {query}</p>
+      <MovieResults />
+      <PersonResults />
     </div>
   );
 };
-export default index;
+
+export default Result;
