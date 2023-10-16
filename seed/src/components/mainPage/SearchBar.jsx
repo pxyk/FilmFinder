@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setQuery } from "@/features/searchSlice";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -31,7 +32,11 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex items-center max-w-3xl mx-auto">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="flex items-center max-w-3xl mx-auto"
+    >
       <input
         type="text"
         placeholder="Search for a movie and person..."
@@ -46,7 +51,7 @@ const SearchBar = () => {
       >
         Search
       </button>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import {
   fetchPopularMoviesAsync,
   selectPopularMovies,
@@ -15,8 +16,31 @@ const PopularMovies = () => {
     dispatch(fetchPopularMoviesAsync());
   }, [dispatch]);
 
+  const container = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+  const item = {
+    hidden: {
+      opacity: 0,
+      translateY: 20,
+    },
+    visible: {
+      opacity: 1,
+      translateY: 0,
+    },
+  };
+
   return (
-    <div className="text-red-500 min-h-screen p-16">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="text-red-500 min-h-screen p-16"
+    >
       <h1 className="text-3xl font-bold mb-8 text-center md:text-left">
         Popular Now
       </h1>
@@ -27,11 +51,20 @@ const PopularMovies = () => {
       ) : error ? (
         <p>Error: {error}</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {movies && movies.length > 0 ? (
             movies.map((movie) => (
               <Link key={movie.id} href={`/movie/${movie.id}`}>
-                <div className="bg-gray-900 rounded p-6 transform transition hover:scale-110 flex flex-col">
+                <motion.div
+                  variants={item}
+                  whileHover={{ scale: 1.1 }}
+                  className="bg-gray-900 rounded p-6 transform transition flex flex-col"
+                >
                   {movie.poster_path && (
                     <img
                       src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -52,15 +85,15 @@ const PopularMovies = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </Link>
             ))
           ) : (
             <p>No movies available.</p>
           )}
-        </div>
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

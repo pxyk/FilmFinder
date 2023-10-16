@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { fetchCastData } from "@/api/movie/castapi";
 
 const MovieCast = ({ movieId }) => {
@@ -19,15 +20,44 @@ const MovieCast = ({ movieId }) => {
     fetchCast();
   }, [movieId]);
 
+  const container = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+  const item = {
+    hidden: {
+      opacity: 0,
+      translateY: 20,
+    },
+    visible: {
+      opacity: 1,
+      translateY: 0,
+    },
+  };
+
   return (
-    <div className="mx-auto mt-16">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="mx-auto mt-16"
+    >
       {/* Cast Section */}
       <h2 className="text-3xl font-bold mb-4 text-center text-red-500">CAST</h2>
-      <div className="flex flex-wrap justify-center">
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="visible"
+        className="flex flex-wrap justify-center"
+      >
         {castData &&
           castData.cast &&
           castData.cast.slice(0, 10).map((actor) => (
-            <div
+            <motion.div
+              variants={item}
               key={actor.id}
               className="w-full sm:w-1/2 md:w-1/3 lg:w-1/5 p-2"
               style={{ maxWidth: "200px" }}
@@ -49,10 +79,10 @@ const MovieCast = ({ movieId }) => {
                 </Link>
                 <p className="text-gray-400">{actor.character}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchPersonCredits } from "@/api/person/personcreditapi";
+import { motion } from "framer-motion";
 
 // Function to group and sort credits by year
 const groupAndSortByYear = (credits) => {
@@ -46,7 +47,11 @@ const PersonCredits = ({ personId }) => {
   const groupedAndSortedCredits = groupAndSortByYear(credits);
 
   return (
-    <div className="p-16">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="p-16"
+    >
       <h2 className="text-red-400 text-3xl font-bold mb-4">Film Credits</h2>
 
       {groupedAndSortedCredits.map((yearGroup) => (
@@ -63,7 +68,7 @@ const PersonCredits = ({ personId }) => {
           </ul>
         </div>
       ))}
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchMovieVideos } from "@/api/movie/movievideoapi";
+import { motion } from "framer-motion";
 
 const MovieVideo = ({ movieId }) => {
   const [videos, setVideos] = useState([]);
@@ -22,7 +23,11 @@ const MovieVideo = ({ movieId }) => {
   }, [movieId]);
 
   return (
-    <div className="mb-8 mt-24">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="mb-8 mt-24"
+    >
       {/* Video Section */}
       <h2 className="text-3xl font-bold mb-4 text-center text-red-500">
         VIDEOS
@@ -43,7 +48,7 @@ const MovieVideo = ({ movieId }) => {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

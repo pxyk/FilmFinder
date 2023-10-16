@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const formatDate = (date) => {
   const [year, month, day] = date.split("-");
@@ -20,7 +21,11 @@ const MovieInfo = ({
   const formattedReleaseDate = formatDate(releaseDate);
 
   return (
-    <div className="flex flex-col md:flex-row bg-gray-800 text-white rounded-lg p-6 shadow-lg">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="flex flex-col md:flex-row bg-gray-800 text-white rounded-lg p-6 shadow-lg"
+    >
       {posterPath && (
         <img
           src={`https://image.tmdb.org/t/p/w500${posterPath}`}
@@ -37,14 +42,16 @@ const MovieInfo = ({
           <p className="text-gray-400 hover:text-gray-200 mb-2 md:mr-4">
             {genres.map((genre) => genre.name).join(", ")}
           </p>
-          <p className="text-gray-400 hover:text-gray-200 mb-2">{formattedReleaseDate}</p>
+          <p className="text-gray-400 hover:text-gray-200 mb-2">
+            {formattedReleaseDate}
+          </p>
         </div>
         <div className="flex items-center justify-center w-16 h-16 bg-red-500 rounded-full mb-4">
           <p className="text-xl font-bold">{votePercentage}%</p>
         </div>
         <p className="text-gray-400 hover:text-gray-100">{overview}</p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

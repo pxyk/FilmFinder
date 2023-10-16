@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Link from "next/link";
 import { searchPeople } from "@/api/search/personsearchapi";
 import Pagination from "@/components/Pagination";
+import { motion } from "framer-motion";
 
 const PersonResults = () => {
   const query = useSelector((state) => state.search.query);
@@ -43,39 +44,64 @@ const PersonResults = () => {
     return <p className="text-gray-700">No people found.</p>;
   }
 
+  const container = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+  const item = {
+    hidden: {
+      opacity: 0,
+      translateY: 20,
+    },
+    visible: {
+      opacity: 1,
+      translateY: 0,
+    },
+  };
+
   return (
-    <div className="container mx-auto px-4 py-8">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="container mx-auto px-4 py-8"
+    >
       <h2 className="text-4xl text-red-500 font-bold mb-2">Person</h2>
       <p className="mb-2 text-gray-300">Total Results: {totalResults}</p>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
-        {people.map((person) => (
-          <li key={person.id} className="mb-4">
-            <Link href={`/person/${person.id}`}>
-              <div className="flex flex-col">
-                <img
-                  src={`https://image.tmdb.org/t/p/w200${person.profile_path}`}
-                  alt={`${person.name} Profile`}
-                  className="w-full h-auto rounded-lg"
-                />
-                <div className="mt-2">
-                  <div className="text-white font-bold text-sm">
-                    {person.name}
+      <motion.div variants={container} initial="hidden" animate="visible">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
+          {people.map((person) => (
+            <li key={person.id} className="mb-4">
+              <Link href={`/person/${person.id}`}>
+                <motion.div variants={item} className="flex flex-col">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w200${person.profile_path}`}
+                    alt={`${person.name} Profile`}
+                    className="w-full h-auto rounded-lg"
+                  />
+                  <div className="mt-2">
+                    <div className="text-white font-bold text-sm">
+                      {person.name}
+                    </div>
+                    <p className=" text-gray-300 text-xs">
+                      {person.known_for_department}
+                    </p>
                   </div>
-                  <p className=" text-gray-300 text-xs">
-                    {person.known_for_department}
-                  </p>
-                </div>
-              </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
+                </motion.div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </motion.div>
       <Pagination
         totalPages={totalPages}
         currentPage={currentPage}
         onPageChange={handlePageChange}
       />
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const PersonalInfo = ({
   name,
@@ -11,7 +12,11 @@ const PersonalInfo = ({
   placeOfBirth,
 }) => {
   return (
-    <div className="flex flex-col md:flex-row bg-gray-800 text-white rounded-lg p-6 shadow-lg">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="flex flex-col md:flex-row bg-gray-800 text-white rounded-lg p-6 shadow-lg"
+    >
       {/* Left Section: Profile Image and Basic Information */}
       <div className="md:mr-24">
         {profilePath && (
@@ -54,7 +59,7 @@ const PersonalInfo = ({
           <p className="font-extralight">{biography}</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
