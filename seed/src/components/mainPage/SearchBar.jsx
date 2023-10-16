@@ -17,7 +17,7 @@ const SearchBar = () => {
 
     dispatch(setQuery(searchQuery));
 
-    router.push(`/result?query=${searchQuery}`);
+    router.push(`/result?query=${encodeURIComponent(searchQuery)}`);
   };
 
   const handleKeyDown = (event) => {
@@ -27,16 +27,21 @@ const SearchBar = () => {
   };
 
   return (
-    <div>
+    <div className="flex items-center max-w-3xl mx-auto">
       <input
         type="text"
         placeholder="Search for a movie and person..."
+        className="text-black p-2 w-72 rounded-l-lg focus:outline-none sm:w-full"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <button onClick={handleSearch}>Search</button>
-      <p>Current Query: {query}</p>
+      <button
+        onClick={handleSearch}
+        className="bg-red-500 text-white p-2 px-6 rounded-r-lg"
+      >
+        Search
+      </button>
     </div>
   );
 };

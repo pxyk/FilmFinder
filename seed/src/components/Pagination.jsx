@@ -1,11 +1,10 @@
-import React from 'react';
+import React from "react";
 
 const Pagination = ({ totalPages, currentPage, onPageChange }) => {
   const maxPagesToShow = 5;
 
   const renderPages = () => {
     const pages = [];
-
     const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
     let startPage, endPage;
 
@@ -27,12 +26,22 @@ const Pagination = ({ totalPages, currentPage, onPageChange }) => {
 
     if (currentPage > halfMaxPagesToShow + 1) {
       pages.push(
-        <button key={1} onClick={() => onPageChange(1)}>
+        <button
+          key={1}
+          onClick={() => onPageChange(1)}
+          className={`pagination-btn ${
+            currentPage === 1 ? "active" : ""
+          } border border-red-500`}
+        >
           1
         </button>
       );
       if (currentPage > halfMaxPagesToShow + 2) {
-        pages.push(<span key="startEllipsis">...</span>);
+        pages.push(
+          <span key="startEllipsis" className="mx-1">
+            ...
+          </span>
+        );
       }
     }
 
@@ -42,6 +51,9 @@ const Pagination = ({ totalPages, currentPage, onPageChange }) => {
           key={i}
           onClick={() => onPageChange(i)}
           disabled={i === currentPage}
+          className={`pagination-btn ${
+            i === currentPage ? "active" : ""
+          } border border-red-500 w-10`}
         >
           {i}
         </button>
@@ -50,10 +62,20 @@ const Pagination = ({ totalPages, currentPage, onPageChange }) => {
 
     if (currentPage < totalPages - halfMaxPagesToShow) {
       if (currentPage < totalPages - halfMaxPagesToShow - 1) {
-        pages.push(<span key="endEllipsis">...</span>);
+        pages.push(
+          <span key="endEllipsis" className="mx-1">
+            ...
+          </span>
+        );
       }
       pages.push(
-        <button key={totalPages} onClick={() => onPageChange(totalPages)}>
+        <button
+          key={totalPages}
+          onClick={() => onPageChange(totalPages)}
+          className={`pagination-btn ${
+            currentPage === totalPages ? "active" : ""
+          } border border-red-500 w-10`}
+        >
           {totalPages}
         </button>
       );
@@ -62,7 +84,9 @@ const Pagination = ({ totalPages, currentPage, onPageChange }) => {
     return pages;
   };
 
-  return <div className="pagination">{renderPages()}</div>;
+  return (
+    <div className="flex justify-center mt-4 space-x-2">{renderPages()}</div>
+  );
 };
 
 export default Pagination;

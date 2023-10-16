@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import { searchMovies } from "@/api/search/moviesearchapi";
-import Pagination from "@/utils/Pagination";
+import Pagination from "@/components/Pagination";
 
 const MovieResults = () => {
   const query = useSelector((state) => state.search.query);
@@ -35,31 +35,33 @@ const MovieResults = () => {
   };
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p className="text-white">Loading...</p>;
   }
 
   if (movies.length === 0) {
-    return <p>No movies found.</p>;
+    return <p className="text-white">No movies found.</p>;
   }
 
   return (
-    <div>
-      <h2>Movie Results</h2>
-      <p>Query: {query}</p>
-      <p>Total Results: {totalResults}</p>
-      <ul>
+    <div className="container mx-auto px-4 py-8">
+      <h2 className="text-4xl text-red-500 font-bold mb-2">Movies</h2>
+      <p className="mb-2 text-gray-300">Total Results: {totalResults}</p>
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {movies.map((movie) => (
-          <li key={movie.id}>
+          <li key={movie.id} className="mb-4">
             <Link href={`/movie/${movie.id}`}>
-              <div>
+              <div className="flex flex-col">
                 <img
                   src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
                   alt={`${movie.title} Poster`}
+                  className="w-full h-auto rounded-lg"
                 />
-              </div>
-              <div>
-                <h3>{movie.title}</h3>
-                <p>{`Year: ${movie.release_date.split("-")[0]}`}</p>{" "}
+                <div className="mt-2">
+                  <h3 className="text-sm font-bold">{movie.title}</h3>
+                  <p className="text-xs text-gray-300">{`Year: ${
+                    movie.release_date.split("-")[0]
+                  }`}</p>
+                </div>
               </div>
             </Link>
           </li>

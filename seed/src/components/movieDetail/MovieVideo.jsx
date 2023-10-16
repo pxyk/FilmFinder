@@ -19,14 +19,16 @@ const MovieVideo = ({ movieId }) => {
   }, [movieId]);
 
   return (
-    <div>
-      <h2>Videos</h2>
-      <div>
+    <div className="mb-8 mt-24">
+      <h2 className="text-3xl font-bold mb-4 text-center text-red-500">
+        VIDEOS
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {videos.map((video) => (
-          <div key={video.key}>
+          <div key={video.key} className="p-2">
             <iframe
               title={video.name}
-              width="560"
+              width="100%"
               height="315"
               src={`https://www.youtube.com/embed/${video.key}`}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

@@ -27,16 +27,21 @@ const ResultSearchBar = () => {
   };
 
   return (
-    <div>
+    <div className="flex items-center justify-center mt-8">
       <input
         type="text"
         placeholder="Search for a movie and person..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         onKeyDown={handleKeyDown}
+        className="text-black p-2 rounded-l-lg w-72 focus:outline-none"
       />
-      <button onClick={handleSearch}>Search</button>
-      <p>Current Query: {query}</p>
+      <button
+        onClick={handleSearch}
+        className="bg-red-500 text-white p-2 rounded-r-lg"
+      >
+        Search
+      </button>
     </div>
   );
 };

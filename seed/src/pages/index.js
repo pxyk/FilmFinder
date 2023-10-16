@@ -1,7 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import PopularMovies from "@/components/mainPage/PopularMovies";
-import SearchBar from "@/components/mainPage/SearchBar";
+import Hero from "@/components/mainPage/Hero";
 
 const index = () => {
   return (
@@ -15,9 +14,7 @@ const index = () => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <h1>My Movie App</h1>
-      <SearchBar />
-      <PopularMovies />
+      <Hero />
     </div>
   );
 };

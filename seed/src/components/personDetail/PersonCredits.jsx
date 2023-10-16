@@ -44,14 +44,16 @@ const PersonCredits = ({ personId }) => {
   const groupedAndSortedCredits = groupAndSortByYear(credits);
 
   return (
-    <div>
-      <h2>Film Credits</h2>
+    <div className="p-16">
+      <h2 className="text-red-400 text-3xl font-bold mb-4">Film Credits</h2>
       {groupedAndSortedCredits.map((yearGroup) => (
-        <div key={yearGroup.year}>
-          <h3>{yearGroup.year}</h3>
+        <div key={yearGroup.year} className="mb-4">
+          <h3 className="text-red-300 text-lg font-semibold">{yearGroup.year}</h3>
           <ul>
             {yearGroup.credits.map((credit) => (
-              <li key={credit.id}>{credit.title}</li>
+              <li key={credit.id} className="ml-4 font-extralight">
+                {credit.title}
+              </li>
             ))}
           </ul>
         </div>

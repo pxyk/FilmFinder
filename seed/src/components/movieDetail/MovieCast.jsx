@@ -19,21 +19,36 @@ const MovieCast = ({ movieId }) => {
   }, [movieId]);
 
   return (
-    <div>
-      <h2>Cast</h2>
-      {castData && castData.cast && castData.cast.length > 0 ? (
-        <ul>
-          {castData.cast.slice(0, 9).map((actor) => (
-            <li key={actor.id}>
-              <Link href={`/person/${actor.id}`}>
-                <p>{actor.name}-{actor.character}</p>
+    <div className="mx-auto mt-16">
+      <h2 className="text-3xl font-bold mb-4 text-center text-red-500">CAST</h2>
+      <div className="flex flex-wrap justify-center">
+        {castData &&
+          castData.cast &&
+          castData.cast.slice(0, 10).map((actor) => (
+            <div
+              key={actor.id}
+              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/5 p-2"
+              style={{ maxWidth: "200px" }}
+            >
+              <div className="relative rounded-lg overflow-hidden mb-4 group">
+                <Link href={`/person/${actor.id}`}>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
+                    alt={`${actor.name} Profile`}
+                    className="w-full h-auto transition-transform transform hover:scale-110"
+                    style={{ maxHeight: "250px" }}
+                  />
                 </Link>
-            </li>
+              </div>
+              <div className="text-white text-center">
+                <Link href={`/person/${actor.id}`}>
+                  <p className="font-bold">{actor.name}</p>
+                </Link>
+                <p className="text-gray-400">{actor.character}</p>
+              </div>
+            </div>
           ))}
-        </ul>
-      ) : (
-        <p>No cast information available.</p>
-      )}
+      </div>
     </div>
   );
 };
