@@ -10,17 +10,21 @@ const SearchBar = () => {
   const router = useRouter();
 
   const handleSearch = () => {
+    // Check if the search query is empty
     if (searchQuery.trim() === "") {
       alert("Please enter a search query.");
       return;
     }
 
+    // Dispatch the search query to the Redux store
     dispatch(setQuery(searchQuery));
 
+    // Navigate to the search result page with the query as a parameter
     router.push(`/result?query=${encodeURIComponent(searchQuery)}`);
   };
 
   const handleKeyDown = (event) => {
+    // Handle search when Enter key is pressed
     if (event.key === "Enter") {
       handleSearch();
     }

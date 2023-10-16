@@ -15,6 +15,7 @@ const PersonResults = () => {
   useEffect(() => {
     const fetchPeople = async (page) => {
       try {
+        // Fetch people based on the query and current page
         if (query) {
           const data = await searchPeople(query, page);
           setPeople(data.results);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchPersonCredits } from "@/api/person/personcreditapi";
 
+// Function to group and sort credits by year
 const groupAndSortByYear = (credits) => {
   const groupedByYear = credits.reduce((result, credit) => {
     const year = credit.release_date
@@ -31,6 +32,7 @@ const PersonCredits = ({ personId }) => {
   useEffect(() => {
     const fetchCredits = async () => {
       try {
+        // Fetch person credits using the provided personId
         const creditsData = await fetchPersonCredits(personId);
         setCredits(creditsData.cast);
       } catch (error) {
@@ -46,9 +48,12 @@ const PersonCredits = ({ personId }) => {
   return (
     <div className="p-16">
       <h2 className="text-red-400 text-3xl font-bold mb-4">Film Credits</h2>
+
       {groupedAndSortedCredits.map((yearGroup) => (
         <div key={yearGroup.year} className="mb-4">
-          <h3 className="text-red-300 text-lg font-semibold">{yearGroup.year}</h3>
+          <h3 className="text-red-300 text-lg font-semibold">
+            {yearGroup.year}
+          </h3>
           <ul>
             {yearGroup.credits.map((credit) => (
               <li key={credit.id} className="ml-4 font-extralight">

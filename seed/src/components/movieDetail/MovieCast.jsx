@@ -6,6 +6,7 @@ const MovieCast = ({ movieId }) => {
   const [castData, setCastData] = useState(null);
 
   useEffect(() => {
+    // Fetch cast data when component mounts
     const fetchCast = async () => {
       try {
         const data = await fetchCastData(movieId);
@@ -20,6 +21,7 @@ const MovieCast = ({ movieId }) => {
 
   return (
     <div className="mx-auto mt-16">
+      {/* Cast Section */}
       <h2 className="text-3xl font-bold mb-4 text-center text-red-500">CAST</h2>
       <div className="flex flex-wrap justify-center">
         {castData &&
@@ -30,6 +32,7 @@ const MovieCast = ({ movieId }) => {
               className="w-full sm:w-1/2 md:w-1/3 lg:w-1/5 p-2"
               style={{ maxWidth: "200px" }}
             >
+              {/* Actor Card */}
               <div className="relative rounded-lg overflow-hidden mb-4 group">
                 <Link href={`/person/${actor.id}`}>
                   <img

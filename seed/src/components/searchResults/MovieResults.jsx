@@ -15,6 +15,7 @@ const MovieResults = () => {
   useEffect(() => {
     const fetchMovies = async (page) => {
       try {
+        // Fetch movies based on the query and current page
         if (query) {
           const data = await searchMovies(query, page);
           setMovies(data.results);

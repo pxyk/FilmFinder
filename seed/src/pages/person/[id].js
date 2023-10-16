@@ -8,6 +8,7 @@ export async function getServerSideProps(context) {
   const { id } = context.query;
 
   try {
+    // Fetch person data based on the person ID
     const personData = await fetchPersonData(id);
     return {
       props: { personData },
@@ -39,6 +40,7 @@ const PersonDetail = ({ personData }) => {
   return (
     <div>
       <Head>
+        {/* Head section for metadata */}
         <title>FilmFinder</title>
         <meta
           name="description"
@@ -51,7 +53,7 @@ const PersonDetail = ({ personData }) => {
         name={name}
         biography={biography}
         profilePath={profile_path}
-        knownCredits={198}
+        knownCredits={198} // Example value for known credits, modify as needed
         knownForDepartment={known_for_department}
         gender={gender === 2 ? "Male" : "Female"}
         birthday={birthday}

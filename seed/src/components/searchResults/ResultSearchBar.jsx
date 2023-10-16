@@ -9,17 +9,21 @@ const ResultSearchBar = () => {
   const query = useSelector((state) => state.search.query);
   const router = useRouter();
 
+  // Function to handle search when button is clicked
   const handleSearch = () => {
     if (searchQuery.trim() === "") {
       alert("Please enter a search query.");
       return;
     }
 
+    // Dispatch the search query to the store
     dispatch(setQuery(searchQuery));
 
+    // Navigate to the result page with the search query
     router.push(`/result?query=${searchQuery}`);
   };
 
+  // Function to handle search when Enter key is pressed
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       handleSearch();

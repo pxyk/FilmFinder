@@ -18,6 +18,7 @@ const MovieDetail = () => {
       }
 
       try {
+        // Fetch movie data based on the movie ID
         const data = await fetchMovieData(id);
         setMovieData(data);
       } catch (error) {
@@ -25,12 +26,13 @@ const MovieDetail = () => {
       }
     };
 
-    fetchMovie();
-  }, [id]);
+    fetchMovie(); // Call the fetchMovie function
+  }, [id]); // Re-run effect when the movie ID changes
 
   return (
     <div>
       <Head>
+        {/* Head section for metadata */}
         <title>FilmFinder</title>
         <meta
           name="description"
@@ -39,7 +41,7 @@ const MovieDetail = () => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      {movieData && (
+      {movieData && ( // Render if movieData is available
         <div>
           <Title
             title={movieData.title}

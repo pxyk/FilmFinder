@@ -12,6 +12,7 @@ const PersonalInfo = ({
 }) => {
   return (
     <div className="flex flex-col md:flex-row bg-gray-800 text-white rounded-lg p-6 shadow-lg">
+      {/* Left Section: Profile Image and Basic Information */}
       <div className="md:mr-24">
         {profilePath && (
           <img
@@ -45,6 +46,7 @@ const PersonalInfo = ({
         </div>
       </div>
 
+      {/* Right Section: Name and Biography */}
       <div className="md:w-1/2">
         <h1 className="text-4xl font-bold mb-6">{name}</h1>
         <div className="mb-4">

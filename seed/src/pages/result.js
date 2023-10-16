@@ -11,6 +11,7 @@ const Result = () => {
   return (
     <div>
       <Head>
+        {/* Head section for metadata */}
         <title>FilmFinder</title>
         <meta
           name="description"
@@ -19,9 +20,9 @@ const Result = () => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <ResultSearchBar />
-      <MovieResults />
-      <PersonResults />
+      <ResultSearchBar /> {/* Render the search bar component */}
+      <MovieResults /> {/* Render the movie results component */}
+      <PersonResults /> {/* Render the person results component */}
     </div>
   );
 };

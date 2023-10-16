@@ -15,10 +15,8 @@ const MovieInfo = ({
   genres,
 }) => {
   const votePercentage = Math.round(voteAverage * 10);
-
   const hours = Math.floor(runtime / 60);
   const minutes = runtime % 60;
-
   const formattedReleaseDate = formatDate(releaseDate);
 
   return (
